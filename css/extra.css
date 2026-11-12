@@ -1,0 +1,29 @@
+/* KS Web — extra styles for the static build (menus, toast, dropdown, progress bar) */
+#scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--primary);z-index:60;pointer-events:none}
+#mobile-menu[hidden]{display:none}
+body.menu-open{overflow:hidden}
+[data-svc-list][hidden]{display:none}
+[data-chev].open{transform:rotate(180deg)}
+/* budget select */
+.ks-select{position:relative}
+.ks-select [role=listbox]{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:30;max-height:18rem;overflow:auto;padding:.25rem;border:1px solid var(--border);background:var(--popover);border-radius:.75rem;box-shadow:var(--shadow-card);opacity:0;visibility:hidden;transform:translateY(-4px) scale(.98);transform-origin:top;transition:opacity .15s,transform .15s,visibility .15s}
+.ks-select.open [role=listbox]{opacity:1;visibility:visible;transform:none}
+.ks-select [role=option]{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.6rem .75rem;border-radius:.5rem;font-size:.95rem;cursor:pointer;color:var(--foreground)}
+.ks-select [role=option]:hover,.ks-select [role=option]:focus{background:var(--accent);outline:none}
+.ks-select [role=option][aria-selected=true]{color:var(--primary)}
+.ks-select button svg{transition:transform .2s}
+.ks-select.open button svg{transform:rotate(180deg)}
+/* toast */
+#toasts{position:fixed;right:1rem;bottom:1rem;z-index:100;display:flex;flex-direction:column;gap:.6rem;pointer-events:none}
+.toast{pointer-events:auto;display:flex;align-items:center;gap:.7rem;min-width:min(356px,calc(100vw - 2rem));padding:1rem 1.1rem;border-radius:.75rem;border:1px solid var(--border);background:var(--popover);color:var(--foreground);box-shadow:0 18px 40px -12px rgba(0,0,0,.7);font-size:.9rem;animation:toast-in .35s cubic-bezier(.2,.7,.2,1) both}
+.toast::before{content:"";flex:none;width:.6rem;height:.6rem;border-radius:50%;background:var(--primary)}
+.toast.error::before{background:var(--destructive)}
+.toast.out{animation:toast-out .25s ease-in both}
+@keyframes toast-in{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes toast-out{to{opacity:0;transform:translateY(8px) scale(.96)}}
+/* carousel */
+.ks-track{touch-action:pan-y;cursor:grab;will-change:transform}
+.ks-track.dragging{cursor:grabbing}
+.ks-track.dragging *{user-select:none}
+/* focus */
+a:focus-visible,button:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:.5rem}
